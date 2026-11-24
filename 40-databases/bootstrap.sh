@@ -18,11 +18,13 @@ cd $REPO_DIR
 
 #check if ansible repo is already exist or not
 
-if [ -d $ANSIBLE_DIR ]; then
+if [ -d "$ANSIBLE_DIR" ]; then
     cd $ANSIBLE_DIR
     git pull
 else
     git clone $REPO_URL
 fi
 
-ansible-playbook -e component=$component main.yaml
+ansible-playbook -e "component=$component" main.yaml
+
+
