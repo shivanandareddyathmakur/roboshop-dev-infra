@@ -16,9 +16,9 @@ data "aws_ami" "joindevops" {
   
 }
 
-data "aws_route53_zone" "hosted_zone_id" {
+data "aws_route53_zone" "reddy25" {
   name         = "reddy25.shop"
-  private_zone = true
+  private_zone = false
 }
 
 data "aws_ssm_parameter" "bastion_sg_id" {
