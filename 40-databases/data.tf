@@ -16,6 +16,11 @@ data "aws_ami" "joindevops" {
   
 }
 
+data "aws_route53_zone" "selected" {
+  name         = "reddy25.shop"
+  private_zone = true
+}
+
 data "aws_ssm_parameter" "bastion_sg_id" {
   name = "/${var.project_name}/${var.environment}/bastion_sg_id"
 }
