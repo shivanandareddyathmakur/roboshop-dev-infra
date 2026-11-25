@@ -16,7 +16,7 @@ data "aws_ami" "joindevops" {
   
 }
 
-data "aws_route53_zone" "selected" {
+data "aws_route53_zone" "hosted_zone_id" {
   name         = "reddy25.shop"
   private_zone = true
 }
