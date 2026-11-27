@@ -5,7 +5,7 @@ resource "aws_lb" "backend_alb" {
   security_groups    = [local.backend_alb_sg_id]
   subnets            = local.private_subnet_ids
 
-  enable_deletion_protection = true #prevents from accidental deletion from UI
+  enable_deletion_protection = false #prevents from accidental deletion from UI
 
   tags = merge(
     local.common_tags,
@@ -28,5 +28,18 @@ resource "aws_lb_listener" "backend_alb" {
       message_body = "hi iam backend-alb"
       status_code  = "200"
     }
+  }
+}
+
+resource "aws_route53_record" "backend_alb" {
+  zone_id = var.zone_id
+  name    = "*.backend-alb-${var.environment}.${var.domain_name}"
+  type    = "A"
+
+  alias {
+    # These are ALB details, not our domain details
+    name                   = aws_lb.backend_alb.dns_name
+    zone_id                = aws_lb.backend_alb.zone_id
+    evaluate_target_health = true
   }
 }

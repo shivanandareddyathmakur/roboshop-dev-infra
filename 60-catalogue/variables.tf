@@ -8,3 +8,8 @@ variable "environment" {
   
 }
 
+variable "domain_name" {
+    default = "reddy25.shop"
+
+}
+
